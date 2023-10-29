@@ -5,7 +5,7 @@ const Contact = () => {
     <div className='text-gray-50 w-full mt-5 max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700'>
         <h1 className='font-bold text-xl'>Contact Us</h1>
         <div className='mt-3'>
-        <p className='font-semibold'>Built and deployed by <a href='https://github.com/Anchit-Nayak' target="_blank" className='text-primary-600 hover:underline'>Anchit Nayak</a></p>
+        <p className='font-semibold text-sm'>Built and deployed by <a href='https://github.com/Anchit-Nayak' target="_blank" className='text-primary-600 hover:underline'>Anchit Nayak</a></p>
         <div className='flex justify-center gap-5 mt-4'> 
 
         <a href="https://github.com/Anchit-Nayak" target='_blank'><BsGithub className='w-7 h-7 hover:scale-110 ease-out duration-300'/></a>

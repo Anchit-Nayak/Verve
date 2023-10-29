@@ -31,7 +31,7 @@ const Card = (props) => {
            <a href="/posts" className='text-primary-600 hover:underline'>Read more...</a>
            </div>
         </div>
-        <img class="h-1/2 md:h-auto overflow-hidden md:rounded-lg object-cover w-full md:w-[2/3px] rounded-b-lg" src={props.image} alt=""/>
+        <img class="h-1/2 md:h-auto overflow-hidden md:rounded-lg object-cover w-full md:w-2/3 rounded-b-lg" src={props.image} alt=""/>
       </a>
     )
   }
