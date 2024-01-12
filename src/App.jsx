@@ -9,6 +9,7 @@ import PostDetail from './Pages/PostDetail';
 import WritePage from './Pages/WritePage';
 import Bookmarks from './Pages/Bookmarks';
 import UserPosts from './Pages/UserPosts';
+import UserProfile from './Pages/UserProfile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/posts' element={<PostDetail/>}/>
         <Route path='/bookmarks' element={<Bookmarks/>}/>
         <Route path='/userposts' element={<UserPosts/>}/>
+        <Route path='/userprofile' element={<UserProfile/>}/>
       </Route>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='signin' element={<Signin/>}/>
