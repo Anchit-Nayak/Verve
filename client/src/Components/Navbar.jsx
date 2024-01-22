@@ -1,19 +1,38 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navigation = [
-  { name: 'Home', href: '/', current: false },
-  { name: 'Write', href: '/write', current: true },
-  { name: 'Bookmarks', href: '/bookmarks', current: false },
-  { name: 'My Posts', href: '/userposts', current: false },
-]
+import { useNavigate } from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const currentPath = window.location.pathname;
+  const navigation = [
+    { name: 'Home', href: '/', current: currentPath==='/' },
+    { name: 'Write', href: '/write', current: currentPath==='/write' },
+    { name: 'Bookmarks', href: '/bookmarks', current: currentPath==='/bookmarks' },
+    { name: 'My Posts', href: '/userposts', current: currentPath==='/userposts' },
+  ]
+  const isSignedIn = () =>{
+    const token = localStorage.getItem("accessToken")
+    if(!token.length) return false;
+  }
+  const [signedIn, setSignedIn] = useState(false);
+  useEffect(()=>{
+    const token = localStorage.getItem('accessToken')
+    if(token){
+      setSignedIn(true);
+    }else{
+      setSignedIn(false);
+    }
+  })
+  const handleSignOut = () =>{
+    localStorage.clear();
+    location.reload();
+  }
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -59,7 +78,16 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    { !signedIn ? 
+                    <div className='flex flex-row space-x-3'>
+                    <a href="/signin">
+                    <button className='bg-primary-600 px-5 py-2 rounded-lg text-white text-sm font-medium hover:bg-primary-700'>Sign-In</button> 
+                    </a>
+                    <a href="/signup">
+                    <button className='bg-primary-600 px-5 py-2 rounded-lg text-white text-sm font-medium hover:bg-primary-700'>Sign-Up</button> 
+                    </a>
+                    </div>
+                    :<Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -67,7 +95,7 @@ export default function Navbar() {
                         src="https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg"
                         alt=""
                       />
-                    </Menu.Button>
+                    </Menu.Button>}
                   </div>
                   <Transition
                     as={Fragment}
@@ -92,7 +120,7 @@ export default function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            onClick={handleSignOut}
                             className={classNames(active ? 'bg-gray-700' : '', 'block px-4 py-2 text-sm ')}
                           >
                             Sign out
