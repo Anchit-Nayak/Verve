@@ -6,15 +6,12 @@ const cors = require('cors');
 app.use(express.json());
 
 app.use(
-    cors( '*'
-        
-    //     {
-    //   origin: ["http://localhost:5173"],
-    //   methods: ["GET", "POST", "DELETE"],
-    //   credentials: true,
-    // }
-    )
-)
+    cors({
+      origin: ["http://localhost:5173","*"],
+      methods: ["GET", "POST", "DELETE"],
+      credentials: true,
+    })
+  )
 
 
 //database connection
