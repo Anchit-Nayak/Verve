@@ -18,7 +18,7 @@ app.use(
 
 
 //database connection
-dotenv.config({path: "./.env"});
+dotenv.config({path: './.env'});
 
 app.use((err, req, res, next) => {
     console.error(err); 
