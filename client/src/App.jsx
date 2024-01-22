@@ -10,6 +10,7 @@ import WritePage from './Pages/WritePage';
 import Bookmarks from './Pages/Bookmarks';
 import UserPosts from './Pages/UserPosts';
 import UserProfile from './Pages/UserProfile';
+import SummaryPage from './Pages/SummaryPage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/bookmarks' element={<Bookmarks/>}/>
         <Route path='/userposts' element={<UserPosts/>}/>
         <Route path='/userprofile' element={<UserProfile/>}/>
+        <Route path='/summary' element={<SummaryPage/>}/>
       </Route>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='signin' element={<Signin/>}/>
