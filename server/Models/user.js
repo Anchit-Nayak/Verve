@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+// const defaultuser = '../assets/defuser.jpeg';
 
 const userSchema = mongoose.Schema({
     email:{
@@ -12,10 +13,11 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 8
+        // minlength: 8
     },
     photo:{
-        type: String
+        type: String,
+        // default: defUser
     },
     fullName: {
         type: String,

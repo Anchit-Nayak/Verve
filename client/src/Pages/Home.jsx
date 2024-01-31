@@ -1,10 +1,27 @@
-import React from 'react'
-import CardLayout from '../Components/Home/CardLayout';
+import React, { useEffect, useState } from 'react'
 import Events from '../Components/Home/Events';
 import Contact from '../Components/Home/Contact';
 import Filter from '../Components/Home/Filter';
+import Card from '../Components/Home/Card';
+import { getPosts } from '../api';
 
 const Home = () => {
+  const [type, setType] = useState("all");
+  const [content, setContent] = useState([]);
+
+  const handleFilter = (option) =>{
+    setType(option);
+  }
+
+
+  useEffect(()=>{
+    (async function(){
+      const response = await getPosts({type})
+      setContent(response.data);
+    })()
+  },[type])
+
+
   return (
     <div className='wrapper-container my-7'>
 
@@ -23,12 +40,18 @@ const Home = () => {
     </div>
 </form>
     <div className='md:hidden'>
-      <Filter/>
+      <Filter handleFilter={handleFilter}/>
     </div>
-      <CardLayout/>
+    <div className='h-full'>
+      {content.length==0?<div className='text-center text-2xl font-bold text-gray-400'>No Posts Found</div>:
+        content.map((card, index)=>{
+           return (<Card key={card._id} author={card.author} category={card.type} date={card.date} id ={card._id} k={index} image={card.file} title={card.title} summary={card.summary}/>)
+        })
+      }
+    </div>
       </div>
       <div className='hidden md:flex flex-col w-1/3 ml-5'>
-      <Filter/>
+      <Filter handleFilter={handleFilter}/>
         <Events/>
         <Contact/>
       </div>
