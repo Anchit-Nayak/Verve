@@ -21,7 +21,7 @@ function App() {
       <Route path="/" element={<Layout/>}>
         <Route index element={<Home/>} />
         <Route path='/write' element={<WritePage/>}/>
-        <Route path='/posts' element={<PostDetail/>}/>
+        <Route path='/posts/:id' element={<PostDetail/>}/>
         <Route path='/bookmarks' element={<Bookmarks/>}/>
         <Route path='/userposts' element={<UserPosts/>}/>
         <Route path='/userprofile' element={<UserProfile/>}/>

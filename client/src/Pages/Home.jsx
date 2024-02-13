@@ -4,23 +4,25 @@ import Contact from '../Components/Home/Contact';
 import Filter from '../Components/Home/Filter';
 import Card from '../Components/Home/Card';
 import { getPosts } from '../api';
+import { MetroSpinner } from "react-spinners-kit";
 
 const Home = () => {
   const [type, setType] = useState("all");
   const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFilter = (option) =>{
     setType(option);
   }
-
-
+  
   useEffect(()=>{
+    setLoading(true);
     (async function(){
       const response = await getPosts({type})
       setContent(response.data);
+      setLoading(false);
     })()
   },[type])
-
 
   return (
     <div className='wrapper-container my-7'>
@@ -43,11 +45,15 @@ const Home = () => {
       <Filter handleFilter={handleFilter}/>
     </div>
     <div className='h-full'>
-      {content.length==0?<div className='text-center text-2xl font-bold text-gray-400'>No Posts Found</div>:
+    {loading?
+    <div className='w-full flex items-center justify-center'>
+      <MetroSpinner/>
+    </div>:
+      content.length==0?<div className='text-center text-2xl font-bold text-gray-400'>No Posts Found</div>:
         content.map((card, index)=>{
            return (<Card key={card._id} author={card.author} category={card.type} date={card.date} id ={card._id} k={index} image={card.file} title={card.title} summary={card.summary}/>)
         })
-      }
+    }
     </div>
       </div>
       <div className='hidden md:flex flex-col w-1/3 ml-5'>
