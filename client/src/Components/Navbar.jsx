@@ -81,10 +81,7 @@ export default function Navbar() {
                     { !signedIn ? 
                     <div className='flex flex-row space-x-3'>
                     <a href="/signin">
-                    <button className='bg-primary-600 px-5 py-2 rounded-lg text-white text-sm font-medium hover:bg-primary-700'>Sign-In</button> 
-                    </a>
-                    <a href="/signup">
-                    <button className='bg-primary-600 px-5 py-2 rounded-lg text-white text-sm font-medium hover:bg-primary-700'>Sign-Up</button> 
+                    <button className='bg-primary-600 px-3 md:px-5 py-2 rounded-lg text-white text-xs md:text-sm font-medium hover:bg-primary-700'>Sign-In</button> 
                     </a>
                     </div>
                     :<Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

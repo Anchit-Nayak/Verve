@@ -10,20 +10,20 @@ const SummaryPage = () => {
     const [summary, setSummary] = useState('');
     const navigate = useNavigate();
     useEffect(()=>{
-        async function query(data) {
-            const response = await fetch("https://api-inference.huggingface.co/models/Falconsai/text_summarization",{
-                    headers: { Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}` },
-                    method: "POST",
-                    body: JSON.stringify(data),
-                }
-            );
-            const result = await response.json();
-            return result;
-        }
-        query({"inputs": `${content}`}).then((response) => {
-            const s = response;
-            setSummary(s[0].summary_text)
-        });
+        // async function query(data) {
+        //     const response = await fetch("https://api-inference.huggingface.co/models/Falconsai/text_summarization",{
+        //             headers: { Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}` },
+        //             method: "POST",
+        //             body: JSON.stringify(data),
+        //         }
+        //     );
+        //     const result = await response.json();
+        //     return result;
+        // }
+        // query({"inputs": `${content}`}).then((response) => {
+        //     const s = response;
+        //     setSummary(s[0].summary_text)
+        // });
     })
 
     const handleCancel = () => {
@@ -32,6 +32,7 @@ const SummaryPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(content);
         // const response = axios.post('http://localhost:5000/api/blog', {
         //     title: title,
         //     content: content,
