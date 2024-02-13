@@ -7,6 +7,7 @@ Welcome to Verve Blog! This full-stack blog website enables you to create and sh
 - **User-friendly Interface:** Enjoy a sleek and intuitive UI powered by React and Tailwind CSS.
 - **Text Summarization:** Utilizes FalconAI's powerful text summarization API to summarize lengthy articles.
 - **Rich Text Editor:** Compose your blog posts effortlessly with React-Quill's rich text editor.
+- **Bookmark Creation:** Easily create bookmarks for your favorite blog posts, allowing quick access to valuable content.
   
 
 ## Snapshots
