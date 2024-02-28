@@ -16,7 +16,7 @@ Welcome to Verve Blog! This full-stack blog website enables you to create and sh
 ![Alt text](https://i.postimg.cc/mrm5WV2h/Screenshot-from-2024-02-14-01-34-09.png "SignIn Page")
 
 #### Home Page
-![Alt text](https://i.postimg.cc/s2j7FT7b/Screenshot-from-2024-02-14-01-23-14.png "Home Page")
+![Alt text](https://i.postimg.cc/yYBxxjYW/Screenshot-from-2024-02-29-01-29-24.png "Home Page")
 
 #### View A Blog Post
 ![Alt text](https://i.postimg.cc/jdVGHFpH/Screenshot-from-2024-02-14-01-29-06.png "View Blog Post")
