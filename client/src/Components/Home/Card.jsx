@@ -11,7 +11,7 @@ const Card = ({author, date, id, k, image, title, summary}) => {
       <img className="h-1/2 md:h-auto md:rounded-lg object-cover w-full md:w-[300px] rounded-t-lg" src={`${!image ? defImg : image}`} alt="" />
       <div className="flex flex-col p-4 leading-normal justify-between md:w-2/3 h-auto text-justify">
         <div className="h-full">
-          <h5 className="mb-1 text-2xl font-bold tracking-tight text-white">{title}</h5>
+          <h5 className="mb-1 text-2xl font-bold tracking-tighter text-white">{title}</h5>
           <p><span className="text-primary-500 hover:underline">{author}</span> <span className="text-gray-500">| {rel}</span></p>
           <p className="mb-3 font-normal text-gray-400 pb-3 tracking-tighter">{summary}</p>
         </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../Models/user');
+const posts = require('../Models/post');
 const bcrypt = require('bcrypt')
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
@@ -15,13 +16,19 @@ const transporter = nodemailer.createTransport({
   });
 const signup = async(req, res, next) =>{
     try {
-        let {fullName, email, password} = req.body;
-        const exists = await db.findOne({ email });
-        if (exists && exists.isActive) {
+        let {fullName,username , email,  password} = req.body;
+        const emailExists = await db.findOne({ email });
+        const usernameExists = await db.findOne({ username });
+        if(usernameExists){
+          return res
+            .status(403)
+            .json({ message: "Username already taken!" });
+        }
+        if (emailExists && emailExists.isActive) {
           return res
             .status(403)
             .json({ message: "Already Signed Up, PLease Log in!" });
-        } else if (exists && !exists.isActive) {
+        }else if (emailExists && !emailExists.isActive) {
           return res
             .status(403)
             .json({
@@ -41,6 +48,7 @@ const signup = async(req, res, next) =>{
           email,
           password,
           fullName,
+          username,
           otp, // Include the otp object in the user data
         });
     
@@ -48,7 +56,7 @@ const signup = async(req, res, next) =>{
           from: process.env.OFFICIAL_EMAIL,
           to: newUser.email,
           subject: "Verification Email",
-          text: `Hello ${newUser.fullName},\n\nYour OTP is: ${newUser.otp.value}.\n\nDo not share your otp with anyone!!\n\nNote: OTP is only valid for 30 Minutes.`
+          text: `Hello ${newUser.username},\n\nYour OTP is: ${newUser.otp.value}.\n\nDo not share your otp with anyone!!\n\nNote: OTP is only valid for 30 Minutes.`
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
@@ -198,6 +206,21 @@ const login = async (req, res, next) => {
     res.status(500).send("Internal server error");
   }
 };
+
+
+const getUserDetails = async(req, res) =>{
+  try{
+    const {id} = req.body;
+    const user = await db.findById(id);
+    if(!user){
+      return res.status(404).json({message:"User not found"})
+    }
+    const userPosts = await posts.find({ id });
+  }catch(err){
+    console.log(err);
+    return res.status(500).send("Internal Server Error")
+  }
+}
 
 
 module.exports = { login, signup, verifyOtp, resendOtp };

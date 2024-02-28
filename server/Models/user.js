@@ -10,6 +10,12 @@ const userSchema = mongoose.Schema({
         lowercase: true,
         validator: [validator.isEmail, 'Please provide a valid email']
     },
+    username:{
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+    },
     password: {
         type: String,
         required: true,
@@ -35,6 +41,6 @@ const userSchema = mongoose.Schema({
 
 })
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

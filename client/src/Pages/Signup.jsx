@@ -7,6 +7,7 @@ const Signup = () => {
   const otpflag = "Already Signed Up, Please Verify your Email."
     const [values, setValues] = useState({
         fullName:"",
+        username: "",
         email:"",
         password:""
     });
@@ -50,6 +51,10 @@ const Signup = () => {
                   <div>
                       <label for="fullName" className="block mb-2 text-sm font-medium  text-white">Full Name</label>
                       <input type="text" name="fullName" id="fullname" placeholder="Full Name" className=" border sm:text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="true" onChange={(e)=>setValues({...values, [e.target.name]:e.target.value })}/>
+                  </div>
+                  <div>
+                      <label for="username" className="block mb-2 text-sm font-medium  text-white">Username</label>
+                      <input type="text" name="username" id="username" placeholder="Username" className=" border sm:text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="true" onChange={(e)=>setValues({...values, [e.target.name]:e.target.value })}/>
                   </div>
                   <div>
                       <label for="email" className="block mb-2 text-sm font-medium  text-white">Your email</label>
