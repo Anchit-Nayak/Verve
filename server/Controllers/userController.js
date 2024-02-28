@@ -84,6 +84,7 @@ const verifyOtp = async(req,res,next) => {
   try{
     const {id,otp} = req.body;
     const user = await db.findById(id);
+    const username = user.username;
     if(otp!==user.otp.value){
       return res.status(401).json({message:"Wrong OTP"})
     }
@@ -101,7 +102,7 @@ const verifyOtp = async(req,res,next) => {
         expiresIn: "30d",
       }),
     ]);
-    res.status(200).json({message:"OTP Verified",_id:user._id, email:user.email,accessToken,refreshToken})
+    res.status(200).json({message:"OTP Verified",_id:user._id, username: username, accessToken,refreshToken})
   } catch(err){
     console.log(err)
     res.status(500).send("Internal Server Error.")
@@ -196,6 +197,7 @@ const login = async (req, res, next) => {
         res.send({
           _id: user._id,
           message: "Login successful",
+          username: user.username,
           accessToken,
           refreshToken,
         });
@@ -215,7 +217,12 @@ const getUserDetails = async(req, res) =>{
     if(!user){
       return res.status(404).json({message:"User not found"})
     }
-    const userPosts = await posts.find({ id });
+    const userPosts = await posts.find({userId: id });
+    const userDetails = await db.findById(id, { password: 0, otp: 0, email: 0 });
+    return res.status(200).json({
+      recentPosts: userPosts,
+      userDetails: userDetails
+    });
   }catch(err){
     console.log(err);
     return res.status(500).send("Internal Server Error")
@@ -223,5 +230,5 @@ const getUserDetails = async(req, res) =>{
 }
 
 
-module.exports = { login, signup, verifyOtp, resendOtp };
+module.exports = { login, signup, verifyOtp, resendOtp, getUserDetails };
 
