@@ -103,12 +103,12 @@ export default function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 text-gray-400 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="border border-gray-700 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 text-gray-400 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="/userprofile"
-                            className={classNames(active ? 'bg-gray-700' : '', 'block px-4 py-2 text-sm ')}
+                            className={classNames(active ? 'bg-gray-700' : '', 'mx-1 rounded-lg block px-4 py-2 text-sm ')}
                           >
                             Your Profile
                           </a>
@@ -118,7 +118,7 @@ export default function Navbar() {
                         {({ active }) => (
                           <a
                             onClick={handleSignOut}
-                            className={classNames(active ? 'bg-gray-700' : '', 'block px-4 py-2 text-sm ')}
+                            className={classNames(active ? 'bg-gray-700' : '', 'mx-1 rounded-lg block px-4 py-2 text-sm ')}
                           >
                             Sign out
                           </a>
